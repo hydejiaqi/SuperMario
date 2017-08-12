@@ -113,6 +113,9 @@ public class Mario extends Sprite {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / SuperMario.PPM);
+        fdef.filter.categoryBits = SuperMario.MARIO_BIT;
+        fdef.filter.maskBits = SuperMario.DEFAULT_BIT | SuperMario.COIN_BIT | SuperMario.BRICK_BIT;
+
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
@@ -121,6 +124,13 @@ public class Mario extends Sprite {
         feet.set(new Vector2(-2 / SuperMario.PPM, -6 / SuperMario.PPM), new Vector2(2 / SuperMario.PPM, -6 / SuperMario.PPM));
         fdef2.shape = feet;
         b2body.createFixture(fdef2);
+
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-2 / SuperMario.PPM, 6 / SuperMario.PPM), new Vector2(2 / SuperMario.PPM, 6 / SuperMario.PPM));
+        fdef.shape = head;
+        fdef.isSensor = true;
+        b2body.createFixture(fdef).setUserData("head");
+
     }
 
 

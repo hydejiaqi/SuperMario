@@ -29,6 +29,7 @@ import com.mygdx.supermario.SuperMario;
 import com.mygdx.supermario.scenes.Hud;
 import com.mygdx.supermario.sprites.Mario;
 import com.mygdx.supermario.tools.B2WorldCreater;
+import com.mygdx.supermario.tools.WorldContactListener;
 
 /**
  * Created by jjiang on 7/28/2017.
@@ -71,6 +72,8 @@ public class PlayScreen implements Screen {
         player = new Mario(world, this); // initialization of  Mario class object
 
         new B2WorldCreater(world, map);
+
+        world.setContactListener(new WorldContactListener());
 
 
     }
